@@ -1,0 +1,10 @@
+<div th:fragment="header">
+    <header>
+        <h1><a href="/homepage">Strona domowa</a></h1>
+        <div class="user-info">
+            <p th:text="'id: ' + ${user.userid}"></p>
+            <p th:text="${user.firstname} + ' ' + ${user.lastname}"></p>
+            <p th:text="'(' + ${user.nickname} + ')'"></p>
+        </div>
+    </header>
+</div>

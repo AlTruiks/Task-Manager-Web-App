@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add project</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/menu :: menu"></div>
+
+    <div class="content">
+        <div class="main-content">
+            <div class="add-container">
+                <h2>Dodaj nowy projekt</h2>
+                <form th:action="@{/homepage/addproject}" method="post">
+                    <div class="add-form-group">
+                        <label for="projectname" class="label">Nazwa projektu:</label>
+                        <input class="input" type="text" id="projectname" name="projectname" placeholder="Podaj nazwę projektu" required>
+                    </div>
+                    <div class="add-form-group">
+                        <label for="description" class="label">Opis projektu:</label>
+                        <input class="input" type="text" id="description" name="description" placeholder="Podaj opis projektu" required>
+                    </div>
+                    <div class="add-form-group">
+                        <label for="startdate" class="label">Data rozpoczęcia:</label>
+                        <input class="input" type="date" id="startdate" name="startdate" required>
+                    </div>
+                    <div class="addt-form-group">
+                        <label for="enddate" class="label">Data zakończenia:</label>
+                        <input class="input" type="date" id="enddate" name="enddate" required>
+                    </div>
+                    <button class="add-button" type="submit">Dodaj nowy projekt</button>
+                </form>
+                <form action="/homepage">
+                        <button class="add-button-return" type="submit">Przerwij</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div class="menu-container" th:fragment="menu">
+  <div class="menu">
+    <h2>Projekty</h2>
+    <form action="/homepage/addproject">
+      <button class="menu-button-add-project" type="submit">Stwórz projekt</button>
+    </form>
+    <ul>
+      <li th:each="project : ${projects}">
+        <a th:href="@{/homepage/projectinfo/{projectid}(projectid=${project.projectid})}" th:text="${project.projectname} + ' (' + ${project.projectid} + ')'"></a>
+        <form th:action="@{/homepage/deleteproject}" method="post">
+          <input type="hidden" name="projectid" th:value="${project.projectid}">
+          <button type="submit" class="menu-button-delete-project">X</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>

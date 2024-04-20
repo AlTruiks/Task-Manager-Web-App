@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add task</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+  <div th:replace="fragments/menu :: menu"></div>
+
+  <div class="content">
+    <div class="main-content">
+      <div class="add-container">
+        <h2>Dodaj nowe zadanie</h2>
+        <form th:action="@{/homepage/addtask/{projectid}(projectid=${thisproject.projectid})}" method="post">
+          <div class="add-form-group">
+            <label for="taskname" class="label">Nazwa zadania:</label>
+            <input class="input" type="text" id="taskname" name="taskname" placeholder="Podaj nazwę zadania" required>
+          </div>
+          <div class="add-form-group">
+            <label for="description" class="label">Opis zadania:</label>
+            <input class="input" type="text" id="description" name="description" placeholder="Podaj opis zadania" required>
+          </div>
+          <div class="add-form-group">
+            <label for="priority" class="label">Priorytet:</label>
+            <select class="input" id="priority" name="priority">
+              <option value="1">Low</option>
+              <option value="2">Medium</option>
+              <option value="3">High</option>
+            </select>
+          </div>
+          <div class="add-form-group">
+            <label for="duedate" class="label">Data zakończenia:</label>
+            <input class="input" id="duedate" type="date" name="duedate" required>
+          </div>
+          <button class="add-button" type="submit">Dodaj nowy zadanie</button>
+        </form>
+        <form th:action="@{/homepage/projectinfo/{projectid}(projectid=${thisproject.projectid})}">
+          <button class="add-button-return" type="submit">Przerwij</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

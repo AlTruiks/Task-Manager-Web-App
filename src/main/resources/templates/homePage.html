@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+  <div th:replace="fragments/menu :: menu"></div>
+
+  <div class="content">
+    <div class="main-content">
+      <h2>Witaj na stronie domowej</h2>
+      <p>Tutaj znajdziesz dostępne projekty:</p>
+      <div class="projects-table">
+        <table>
+          <thead>
+          <tr>
+            <th>Nazwa Projektu</th>
+            <th>Opis</th>
+            <th>Data rozpoczęcia</th>
+            <th>Data zakończenia</th>
+            <th>Statusy zadań</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="project : ${projectsprint}">
+            <td th:text="${project[1]}"></td>
+            <td th:text="${project[2]}"></td>
+            <td th:text="${project[3]}"></td>
+            <td th:text="${project[4]}"></td>
+            <td>
+              <ul>
+                <li th:text="${statuses[0].statusname} + ': ' + ${project[5]}"></li>
+                <li th:text="${statuses[1].statusname} + ': ' + ${project[6]}"></li>
+                <li th:text="${statuses[2].statusname} + ': ' + ${project[7]}"></li>
+                <li th:text="${statuses[3].statusname} + ': ' + ${project[8]}"></li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

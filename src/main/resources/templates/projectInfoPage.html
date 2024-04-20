@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add project</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/menu :: menu"></div>
+
+    <div class="content">
+        <div class="main-content">
+            <h1 th:text="${thisproject.projectname}" class="project-name"></h1>
+            <p th:text="${thisproject.description}" class="project-description"></p>
+            <form th:action="@{/homepage/addtask/{projectid}(projectid=${thisproject.projectid})}">
+                <button type="submit" class="project-button-add-task">Dodaj zadanie</button>
+            </form>
+        </div>
+        <div class="task-container">
+            <div th:each="task : ${tasks}" class="task">
+                <span class="task-priority" th:text="${task[4]}">Priority name</span>
+                <h2 th:text="${task[2]}" class="task-title">Task name</h2>
+                <p th:text="${task[3]}" class="task-description">Description</p>
+                <span class="task-due-date" th:text="${task[6]}">Due Date</span>
+                <form th:action="@{/deletetask/{projectid}(projectid=${thisproject.projectid})}" method="post">
+<!--                    <input type="hidden" name="projectid" th:value="${thisproject.projectid}">-->
+                    <input type="hidden" name="taskid" th:value="${task[0]}">
+                    <button type="submit" class="task-button-end-task">Zakończ zadanie</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
