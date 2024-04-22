@@ -9,9 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -51,5 +49,10 @@ public class AddTaskController {
     private String deletetask(Task task, @PathVariable Long projectid) {
         addTaskService.DeleteTask(task.getTaskid());
         return "redirect:/homepage/projectinfo/" + projectid;
+    }
+    @PostMapping("/updatetask/{taskid}")
+    private String updatetask(@PathVariable Long taskid, @RequestParam("taskstatus") Long statusid) {
+        addTaskService.UpdateTaskStatus(taskid, statusid);
+        return "redirect:/homepage";
     }
 }

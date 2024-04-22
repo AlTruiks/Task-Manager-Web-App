@@ -18,4 +18,5 @@ public class AddTaskService {
         taskRepository.save(task);
     }
     public void DeleteTask(Long taskid) { taskRepository.deleteById(taskid); }
+    public void UpdateTaskStatus(Long taskid, Long taskstatus) { taskRepository.updateTaskStatus(taskid, taskstatus); }
 }

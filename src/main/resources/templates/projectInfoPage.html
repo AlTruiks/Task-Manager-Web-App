@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <title>Add project</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        .popup-container {
+            position: absolute;
+            background-color: rgba(.0, .0, .0, .3);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .popup-container.active {
+            opacity: 1;
+            pointer-events: auto;
+            transition: .4s, ease;
+        }
+        .popup-container .popup-content {
+            width: 800px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            transform: scale(0);
+        }
+        .popup-container.active .popup-content {
+            transform: scale(1);
+            transition: .4s, ease;
+        }
+    </style>
 </head>
 <body>
     <div th:replace="fragments/header :: header"></div>
@@ -18,18 +46,34 @@
             </form>
         </div>
         <div class="task-container">
-            <div th:each="task : ${tasks}" class="task">
+            <div th:each="task : ${tasks}" class="task"
+                 th:data-taskid="${task[0]}" th:data-taskname="${task[2]}" th:data-taskstatus="${task[7]}"
+                 onclick="openPopUp(this)">
+                <span class="task-status" th:text="${task[7]}">Task status</span>
                 <span class="task-priority" th:text="${task[4]}">Priority name</span>
                 <h2 th:text="${task[2]}" class="task-title">Task name</h2>
                 <p th:text="${task[3]}" class="task-description">Description</p>
                 <span class="task-due-date" th:text="${task[6]}">Due Date</span>
                 <form th:action="@{/deletetask/{projectid}(projectid=${thisproject.projectid})}" method="post">
-<!--                    <input type="hidden" name="projectid" th:value="${thisproject.projectid}">-->
                     <input type="hidden" name="taskid" th:value="${task[0]}">
                     <button type="submit" class="task-button-end-task">Zakończ zadanie</button>
                 </form>
             </div>
         </div>
+
     </div>
+    <div class="popup-container">
+        <div class="popup-content">
+            <h1>Hello pop-up</h1>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nulla imperdiet magna eget ipsum efficitur ultrices.
+                Sed velit sem, feugiat porta mauris id, interdum aliquam neque.
+                Cras sit amet feugiat mi, eget venenatis nunc. Suspendisse potenti.
+                Phasellus dolor orci, rhoncus in cursus id, gravida quis lacus.</span>
+            <button class="popup-button-close" onclick="closePopUp()">Close</button>
+        </div>
+    </div>
+
+    <script src="/css/script.js"></script>
 </body>
 </html>
