@@ -68,7 +68,7 @@
                 <span class="task-due-date" th:text="${task[6]}">Due Date</span>
                 <form th:action="@{/deletetask/{projectid}(projectid=${thisproject.projectid})}" method="post">
                     <input type="hidden" name="taskid" th:value="${task[0]}">
-                    <button type="submit" class="task-button-end-task">Zakończ zadanie</button>
+                    <button type="submit" class="task-button-end-task">Usuń zadanie</button>
                 </form>
             </div>
         </div>

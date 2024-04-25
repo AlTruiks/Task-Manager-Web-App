@@ -23,9 +23,6 @@ public class CommentController {
     @GetMapping("/getcomments/{taskid}")
     public ResponseEntity<List<Object[]>> getCommentsForTask(@PathVariable Long taskid) {
         List<Object[]> comments = commentService.GetCommentsByTaskId(taskid);
-        for(Object[] comment : comments) {
-            System.out.println(comment[0] + " " + comment[1] + " " + comment[2] + " " + comment[3]);
-        }
         return ResponseEntity.ok(comments);
     }
     @PostMapping("/addcomment/{userid}/{taskid}")
