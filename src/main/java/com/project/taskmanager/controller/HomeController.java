@@ -65,6 +65,7 @@ public class HomeController {
         model.addAttribute("projects", homeService.GetProjects());
         model.addAttribute("thisproject", homeService.GetProject(projectid));
         model.addAttribute("tasks", homeService.GetTasksToPrintByProjectId(projectid));
+        model.addAttribute("comments", homeService.GetTasksToPrintByProjectId(projectid));
         return "projectInfoPage";
     }
 }

@@ -7,7 +7,7 @@
     <style>
         .popup-container {
             position: absolute;
-            background-color: rgba(.0, .0, .0, .3);
+            background-color: rgba(.0, .0, .0, .7);
             height: 100%;
             width: 100%;
             display: flex;
@@ -22,14 +22,23 @@
             transition: .4s, ease;
         }
         .popup-container .popup-content {
-            width: 800px;
+            width: 700px;
             background-color: #f4f4f4;
             border-radius: 8px;
             transform: scale(0);
+            display: flex;
         }
         .popup-container.active .popup-content {
             transform: scale(1);
             transition: .4s, ease;
+        }
+        .popup-status-section {
+            background-color: lightcoral;
+            width: 40%;
+        }
+        .popup-comments-section {
+            background-color: lightblue;
+            width: 60%;
         }
     </style>
 </head>
@@ -47,7 +56,10 @@
         </div>
         <div class="task-container">
             <div th:each="task : ${tasks}" class="task"
-                 th:data-taskid="${task[0]}" th:data-taskname="${task[2]}" th:data-taskstatus="${task[7]}"
+                 th:data-taskid="${task[0]}"
+                 th:data-taskname="${task[2]}"
+                 th:data-taskstatus="${task[7]}"
+                 th:data-userid="${user.userid}"
                  onclick="openPopUp(this)">
                 <span class="task-status" th:text="${task[7]}">Task status</span>
                 <span class="task-priority" th:text="${task[4]}">Priority name</span>
@@ -64,13 +76,13 @@
     </div>
     <div class="popup-container">
         <div class="popup-content">
-            <h1>Hello pop-up</h1>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nulla imperdiet magna eget ipsum efficitur ultrices.
-                Sed velit sem, feugiat porta mauris id, interdum aliquam neque.
-                Cras sit amet feugiat mi, eget venenatis nunc. Suspendisse potenti.
-                Phasellus dolor orci, rhoncus in cursus id, gravida quis lacus.</span>
-            <button class="popup-button-close" onclick="closePopUp()">Close</button>
+            <div class="popup-status-section"></div>
+            <div class="popup-comments-section">
+                <p>Comment section</p>
+                <div class="comment">
+                    <p></p>
+                </div>
+            </div>
         </div>
     </div>
 
