@@ -77,4 +77,10 @@ public class HomeController {
         model.addAttribute("comments", homeService.GetTasksToPrintByProjectId(projectid));
         return "projectInfoPage";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/loginpage";
+    }
 }
