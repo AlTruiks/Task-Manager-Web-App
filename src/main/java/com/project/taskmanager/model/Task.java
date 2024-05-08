@@ -26,10 +26,8 @@ public class Task {
     private LocalDate creationdate;
     private LocalDate duedate;
     private Long status;
-
     public Task() {
     }
-
     public Task(Long taskid, Long projectid, String taskname, String description, Long priority, LocalDate creationdate, LocalDate duedate, Long status) {
         this.taskid = taskid;
         this.projectid = projectid;
@@ -40,7 +38,6 @@ public class Task {
         this.duedate = duedate;
         this.status = status;
     }
-
     public Task(Long projectid, String taskname, String description, Long priority, LocalDate creationdate, LocalDate duedate, Long status) {
         this.projectid = projectid;
         this.taskname = taskname;

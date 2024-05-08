@@ -28,20 +28,13 @@ public class HomeService {
         this.statusRepository = statusRepository;
     }
 
-    public List<Project> GetProjects() {
-        return projectRepository.findAll();
-    }
+
     public List<Object[]> GetProjectsToPrint() { return projectRepository.GetProjectsToPrint(); }
     public List<Status> GetStatusesNames() { return statusRepository.findAll(); }
-    public Project GetProject(Long id) { return projectRepository.getReferenceById(id);}
-    public void SaveProject(Project project) {
-        projectRepository.save(project);
-    }
-    public void DeleteProject(Long id) { projectRepository.deleteById(id); }
 
-    public User GetUser(Long id) {
-        return userRepository.getReferenceById(id);
-    }
+
+
+
 
     public List<Task> GetTasksByProjectId(Long projectid) { return  taskRepository.GetTasksByProjectId(projectid); }
     public List<Object[]> GetTasksToPrintByProjectId(Long projectid) { return  taskRepository.GetTasksToPrintByProjectId(projectid); }

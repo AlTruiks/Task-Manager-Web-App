@@ -6,8 +6,9 @@
     </form>
     <ul>
       <li th:each="project : ${projects}">
-        <a th:href="@{/homepage/projectinfo/{projectid}(projectid=${project.projectid})}" th:text="${project.projectname} + ' (' + ${project.projectid} + ')'"></a>
-        <form th:action="@{/homepage/deleteproject}" method="post">
+        <a th:href="@{/homepage/projectinfo/{projectid}(projectid=${project.projectid})}"
+           th:text="${project.projectname} + ' (' + ${project.projectid} + ')'"></a>
+        <form th:action="@{/deleteproject}" method="post">
           <input type="hidden" name="projectid" th:value="${project.projectid}">
           <button type="submit" class="menu-button-delete-project">X</button>
         </form>

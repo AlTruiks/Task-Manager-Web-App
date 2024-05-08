@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @Entity
@@ -17,15 +15,12 @@ public class Status {
     )
     private Long statusid;
     private String statusname;
-
     public Status() {
     }
-
     public Status(Long statusid, String statusname) {
         this.statusid = statusid;
         this.statusname = statusname;
     }
-
     public Status(String statusname) {
         this.statusname = statusname;
     }

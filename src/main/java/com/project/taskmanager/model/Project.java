@@ -20,10 +20,8 @@ public class Project {
     private String description;
     private LocalDate startdate;
     private LocalDate enddate;
-
     public Project() {
     }
-
     public Project(Long projectid, String projectname, String description, LocalDate startdate, LocalDate enddate) {
         this.projectid = projectid;
         this.projectname = projectname;
@@ -31,14 +29,12 @@ public class Project {
         this.startdate = startdate;
         this.enddate = enddate;
     }
-
     public Project(String projectname, String description, LocalDate startdate, LocalDate enddate) {
         this.projectname = projectname;
         this.description = description;
         this.startdate = startdate;
         this.enddate = enddate;
     }
-
     public Project(String projectname) {
         this.projectname = projectname;
         this.description = "description";

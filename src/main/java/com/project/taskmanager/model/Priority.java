@@ -15,15 +15,12 @@ public class Priority {
     )
     private Long priorityid;
     private String priorityname;
-
     public Priority() {
     }
-
     public Priority(Long priorityid, String priorityname) {
         this.priorityid = priorityid;
         this.priorityname = priorityname;
     }
-
     public Priority(String priorityname) {
         this.priorityname = priorityname;
     }

@@ -10,11 +10,11 @@ import java.util.List;
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
-
     @Autowired
     public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
     }
+
     public List<Object[]> GetCommentsByTaskId(Long taskid) { return commentRepository.GetCommentsByTaskId(taskid); }
-    public void SetComment(Comment komentarz) { commentRepository.save(komentarz); }
+    public void SetComment(Comment comment) { commentRepository.save(comment); }
 }

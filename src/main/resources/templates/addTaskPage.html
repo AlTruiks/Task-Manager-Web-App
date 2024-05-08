@@ -13,7 +13,7 @@
     <div class="main-content">
       <div class="add-container">
         <h2>Dodaj nowe zadanie</h2>
-        <form th:action="@{/homepage/addtask/{projectid}(projectid=${thisproject.projectid})}" method="post">
+        <form th:action="@{/addtask/{projectid}(projectid=${thisproject.projectid})}" method="post">
           <div class="add-form-group">
             <label for="taskname" class="label">Nazwa zadania:</label>
             <input class="input" type="text" id="taskname" name="taskname" placeholder="Podaj nazwę zadania" required>

@@ -27,8 +27,8 @@ public class CommentController {
     }
     @PostMapping("/addcomment/{projectid}/{userid}/{taskid}")
     public String addComment(@PathVariable Long projectid, @PathVariable Long userid, @PathVariable Long taskid, String commentcontent) {
-        Comment komentarz = new Comment(taskid, userid, commentcontent, LocalDate.now());
-        commentService.SetComment(komentarz);
+        Comment comment = new Comment(taskid, userid, commentcontent, LocalDate.now());
+        commentService.SetComment(comment);
         return "redirect:/homepage/projectinfo/{projectid}";
     }
 }

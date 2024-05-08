@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddTaskService {
+public class TaskService {
     private final CommentRepository commentRepository;
     private final TaskRepository taskRepository;
 
     @Autowired
-    public AddTaskService(CommentRepository commentRepository, TaskRepository taskRepository) {
+    public TaskService(CommentRepository commentRepository, TaskRepository taskRepository) {
         this.commentRepository = commentRepository;
         this.taskRepository = taskRepository;
     }

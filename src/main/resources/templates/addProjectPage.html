@@ -13,7 +13,7 @@
         <div class="main-content">
             <div class="add-container">
                 <h2>Dodaj nowy projekt</h2>
-                <form th:action="@{/homepage/addproject}" method="post">
+                <form th:action="@{/addproject}" method="post">
                     <div class="add-form-group">
                         <label for="projectname" class="label">Nazwa projektu:</label>
                         <input class="input" type="text" id="projectname" name="projectname" placeholder="Podaj nazwę projektu" required>
@@ -26,7 +26,7 @@
                         <label for="startdate" class="label">Data rozpoczęcia:</label>
                         <input class="input" type="date" id="startdate" name="startdate" required>
                     </div>
-                    <div class="addt-form-group">
+                    <div class="add-form-group">
                         <label for="enddate" class="label">Data zakończenia:</label>
                         <input class="input" type="date" id="enddate" name="enddate" required>
                     </div>

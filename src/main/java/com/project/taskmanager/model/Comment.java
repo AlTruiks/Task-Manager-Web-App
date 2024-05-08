@@ -20,10 +20,8 @@ public class Comment {
     private Long userid;
     private String commentcontent;
     private LocalDate dateadded;
-
     public Comment() {
     }
-
     public Comment(Long commentid, Long taskid, Long userid, String commentcontent, LocalDate dateadded) {
         this.commentid = commentid;
         this.taskid = taskid;
@@ -31,7 +29,6 @@ public class Comment {
         this.commentcontent = commentcontent;
         this.dateadded = dateadded;
     }
-
     public Comment(Long taskid, Long userid, String commentcontent, LocalDate dateadded) {
         this.taskid = taskid;
         this.userid = userid;

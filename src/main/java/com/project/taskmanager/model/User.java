@@ -18,10 +18,8 @@ public class User {
     private String lastname;
     private String nickname;
     private String password;
-
     public User() {
     }
-
     public User(Long userid, String firstname, String lastname, String nickname, String password) {
         this.userid = userid;
         this.firstname = firstname;
@@ -29,7 +27,6 @@ public class User {
         this.nickname = nickname;
         this.password = password;
     }
-
     public User(String firstname, String lastname, String nickname, String password) {
         this.firstname = firstname;
         this.lastname = lastname;

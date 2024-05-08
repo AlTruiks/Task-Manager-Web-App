@@ -2,6 +2,7 @@ package com.project.taskmanager.controller;
 
 import com.project.taskmanager.model.User;
 import com.project.taskmanager.repository.UserRepository;
+import com.project.taskmanager.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -14,21 +15,17 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/loginpage")
 public class LoginController {
-
-    private final UserRepository userRepository;
-
-    public LoginController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private final UserService userService;
+    public LoginController(UserService userService) {
+        this.userService = userService;
     }
-
     @GetMapping
     public String loginpage() {
         return "loginpage";
     }
-
     @PostMapping
     private String checkLogin(User user, HttpSession session) {
-        Optional<User> u = userRepository.findUserByLoginAndPassword(user.getNickname(), user.getPassword());
+        Optional<User> u = userService.findUserByLoginAndPassword(user.getNickname(), user.getPassword());
         if (u.isPresent()) {
             session.setAttribute("userid", u.get().getUserid());
             return "redirect:/homepage";

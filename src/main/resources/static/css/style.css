@@ -5,6 +5,8 @@ html, body {
     padding: 0;
     height: 100%;
 }
+/*##################*/
+/*CSS for login/register page*/
 .login-container {
     background-color: #ffffff;
     padding: 20px;
@@ -37,7 +39,17 @@ html, body {
 .login-container button:hover {
     background-color: #0056b3;
 }
-/* Style dla homePage */
+.create-account-link {
+    color: #286090;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+}
+.create-account-link:hover {
+    color: blue;
+}
+/*##############*/
+/*CSS for header*/
 header {
     background-color: #007bff;
     color: #fff;
@@ -65,6 +77,8 @@ header h1 a {
 .logout-link:hover {
     color: #cccccc;
 }
+/*############*/
+/*CSS for menu*/
 .menu-container {
     float: left;
     width: 20%;
@@ -120,6 +134,8 @@ header h1 a {
 .menu-button-add-project:hover {
     background-color: #4cae4c;
 }
+/*#########################*/
+/*CSS for home page content*/
 .content {
     float: left;
     width: 80%;
@@ -151,13 +167,30 @@ td ul {
 td ul li {
     margin-bottom: 5px;
 }
-
-/*Style dla projectInfoPage*/
+/*#########################*/
+/*CSS for project info page*/
 .task-container {
-    /*max-width: 800px;*/
     margin: 20px;
-    display: grid;grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
+}
+.project-button-add-task {
+    position: absolute;
+    padding: 8px 16px;
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.project-button-add-task:hover {
+    background-color: #286090;
+}
+.project-description {
+    background-color: #337ab7;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 .task {
     background-color: #ffffff;
@@ -197,26 +230,8 @@ td ul li {
     left: 10px;
     color: #333333;
 }
-.project-button-add-task {
-    position: absolute;
-    /*top: -40px;*/
-    /*left: 10px;*/
-    padding: 8px 16px;
-    background-color: #337ab7;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.project-button-add-task:hover {
-    background-color: #286090;
-}
-.project-description {
-    background-color: #337ab7;
-    color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-/*Add project*/
+/*########################*/
+/*CSS for add project/task page*/
 .add-container {
     max-width: 400px;
     margin: 20px auto;
@@ -248,7 +263,6 @@ td ul li {
     transition: background-color 0.3s;
 }
 .add-button {
-    margin-top: 10px;
     background-color: #4CAF50;
 }
 .add-button-return {
@@ -259,4 +273,130 @@ td ul li {
 }
 .add-button-return:hover {
     background-color: #286090;
+}
+/*##############*/
+/*CSS for pop-up*/
+.popup-container {
+    position: absolute;
+    background-color: rgba(.0, .0, .0, .7);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+}
+.popup-container.active {
+    opacity: 1;
+    pointer-events: auto;
+    transition: .4s, ease;
+}
+.popup-container .popup-content {
+    width: 500px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    transform: scale(0);
+}
+.popup-container.active .popup-content {
+    transform: scale(1);
+    transition: .4s, ease;
+}
+.popup-content {
+    position: absolute;
+}
+.popup-status-section {
+    margin: 10px;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+}
+.popup-status-section h2 {
+    display: inline-block;
+    margin: 0;
+}
+.popup-button-close {
+    float: right;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.popup-button-close:hover {
+    background-color: #df3737;
+}
+.popup-status-section form {
+    margin-top: 20px;
+}
+.popup-status-section form select {
+    width: 150px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px; /* Dodatkowy margines na prawo dla oddzielenia od przycisku */
+}
+.popup-status-section form button[type='submit'] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.popup-status-section form button[type='submit']:hover {
+    background-color: #45a049;
+}
+.popup-comments-section {
+    margin: 10px;
+    top: 0;
+    left: 0;
+    padding: 0 20px 5px 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+}
+.popup-comments-section form {
+    display: flex;
+    align-items: center; /* Wyśrodkowanie elementów w pionie */
+    margin-bottom: 10px;
+}
+
+.popup-comments-section form input[type='text'] {
+    flex: 1; /* Elastyczne dopasowanie szerokości */
+    margin-right: 10px;
+    height: 30px;
+}
+.popup-comments-section form button[type='submit'] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.popup-comments-section .comment {
+    padding: 10px;
+    background-color: #E5E5E5;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.popup-comments-section .comment span {
+    display: block;
+    color: #333;
+}
+.popup-comments-section .comment span.author {
+    font-weight: bold;
+}
+.popup-comments-section .comment span.date {
+    float: right;
 }
