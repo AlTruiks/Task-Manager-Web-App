@@ -400,3 +400,16 @@ td ul li {
 .popup-comments-section .comment span.date {
     float: right;
 }
+.popup-button-delete-comment {
+    float: right;
+    background-color: #dd4b39;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s;
+}
+.popup-button-delete-comment:hover {
+    background-color: #c0392b;
+}

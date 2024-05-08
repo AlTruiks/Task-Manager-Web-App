@@ -35,11 +35,17 @@ function openPopUp(element) {
         .then(comments => {
             popupCommentsContent.innerHTML += "<h3>Komentarze</h3>";
             comments.forEach(comment => {
-                popupCommentsContent.innerHTML += "<div class='comment'>" +
+                const comment_userid = comment[2].toString();
+                let commentHTML = "<div class='comment'>";
+                if(comment_userid === userid) {
+                    commentHTML += "<button class=\"popup-button-delete-comment\" data-commentid=\"${comment[0]}\">X</button>";
+                }
+                commentHTML +=
                     "<span>" + comment[1] + "</span><br>" + // zawartość komentarza
-                    "<span>" + comment[3] + "</span>" + // data dodania komentarza
-                    "<span>" + comment[2] + "</span>" + // autor komentarza
-                    "</div>";
+                    "<span>" + comment[4] + "</span>" + // data dodania komentarza
+                    "<span>" + comment[3] + "</span>"; // autor komentarza
+                commentHTML += "</div>";
+                popupCommentsContent.innerHTML += commentHTML;
             });
         })
         .catch(error => {
