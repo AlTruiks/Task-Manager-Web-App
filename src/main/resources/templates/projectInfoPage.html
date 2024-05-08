@@ -22,23 +22,112 @@
             transition: .4s, ease;
         }
         .popup-container .popup-content {
-            width: 700px;
+            width: 500px;
             background-color: #f4f4f4;
             border-radius: 8px;
             transform: scale(0);
-            display: flex;
         }
         .popup-container.active .popup-content {
             transform: scale(1);
             transition: .4s, ease;
         }
+        .popup-content {
+            position: absolute;
+        }
         .popup-status-section {
-            background-color: lightcoral;
-            width: 40%;
+            margin: 10px;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ccc;
+        }
+        .popup-status-section h2 {
+            display: inline-block;
+            margin: 0;
+        }
+        .popup-button-close {
+            float: right;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 2px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .popup-button-close:hover {
+            background-color: #df3737;
+        }
+        .popup-status-section form {
+            margin-top: 20px;
+        }
+        .popup-status-section form select {
+            width: 150px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px; /* Dodatkowy margines na prawo dla oddzielenia od przycisku */
+        }
+        .popup-status-section form button[type='submit'] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .popup-status-section form button[type='submit']:hover {
+            background-color: #45a049;
         }
         .popup-comments-section {
-            background-color: lightblue;
-            width: 60%;
+            margin: 10px;
+            top: 0;
+            left: 0;
+            padding: 0 20px 5px 20px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ccc;
+        }
+        .popup-comments-section form {
+            display: flex;
+            align-items: center; /* Wyśrodkowanie elementów w pionie */
+            margin-bottom: 10px;
+        }
+
+        .popup-comments-section form input[type='text'] {
+            flex: 1; /* Elastyczne dopasowanie szerokości */
+            margin-right: 10px;
+            height: 30px;
+        }
+        .popup-comments-section form button[type='submit'] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .popup-comments-section .comment {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .popup-comments-section .comment span {
+            display: block;
+            color: #333;
+        }
+        .popup-comments-section .comment span.author {
+            font-weight: bold;
+        }
+        .popup-comments-section .comment span.date {
+            float: right;
         }
     </style>
 </head>
@@ -55,17 +144,20 @@
             </form>
         </div>
         <div class="task-container">
-            <div th:each="task : ${tasks}" class="task"
-                 th:data-taskid="${task[0]}"
-                 th:data-taskname="${task[2]}"
-                 th:data-taskstatus="${task[7]}"
-                 th:data-userid="${user.userid}"
-                 onclick="openPopUp(this)">
-                <span class="task-status" th:text="${task[7]}">Task status</span>
-                <span class="task-priority" th:text="${task[4]}">Priority name</span>
-                <h2 th:text="${task[2]}" class="task-title">Task name</h2>
-                <p th:text="${task[3]}" class="task-description">Description</p>
-                <span class="task-due-date" th:text="${task[6]}">Due Date</span>
+            <div th:each="task : ${tasks}" class="task">
+                <div class="task-content"
+                     th:data-taskid="${task[0]}"
+                     th:data-taskname="${task[2]}"
+                     th:data-taskstatus="${task[7]}"
+                     th:data-userid="${user.userid}"
+                     th:data-projectid="${thisproject.projectid}"
+                     onclick="openPopUp(this)">
+                    <span class="task-status" th:text="${task[7]}">Task status</span>
+                    <span class="task-priority" th:text="${task[4]}">Priority name</span>
+                    <h2 th:text="${task[2]}" class="task-title">Task name</h2>
+                    <p th:text="${task[3]}" class="task-description">Description</p>
+                    <span class="task-due-date" th:text="${task[6]}">Due Date</span>
+                </div>
                 <form th:action="@{/deletetask/{projectid}(projectid=${thisproject.projectid})}" method="post">
                     <input type="hidden" name="taskid" th:value="${task[0]}">
                     <button type="submit" class="task-button-end-task">Usuń zadanie</button>
@@ -76,11 +168,31 @@
     </div>
     <div class="popup-container">
         <div class="popup-content">
-            <div class="popup-status-section"></div>
+            <div class="popup-status-section">
+                <h2>taskname</h2>
+                <button class="popup-button-close" onclick="closePopUp()">Close</button>
+                <form action="updatetask">
+                    <p>Status zadania: aktualny status</p>
+                    <select name='taskstatus'>
+                        <option value='1'>To Do</option>
+                        <option value='2'>In Progress</option>
+                        <option value='3'>Completed</option>
+                        <option value='4'>Deferred</option>
+                    </select>
+                    <button type='submit'>Zapisz</button>
+                </form>
+            </div>
             <div class="popup-comments-section">
-                <p>Comment section</p>
-                <div class="comment">
-                    <p></p>
+                <h3>Dodaj komentarz</h3>
+                <form action="addcomment" method='post'>
+                <input type='text' name='commentcontent' placeholder='Wpisz komentarz'>
+                <button type='submit'>Dodaj komentarz</button>
+                </form>
+                <h3>Komentarze</h3>
+                <div class='comment'>
+                <span>comment</span><br>
+                <span>date</span>
+                <span>user</span>
                 </div>
             </div>
         </div>

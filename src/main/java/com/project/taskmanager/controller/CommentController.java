@@ -25,10 +25,10 @@ public class CommentController {
         List<Object[]> comments = commentService.GetCommentsByTaskId(taskid);
         return ResponseEntity.ok(comments);
     }
-    @PostMapping("/addcomment/{userid}/{taskid}")
-    public String addComment(@PathVariable Long userid, @PathVariable Long taskid, String commentcontent) {
+    @PostMapping("/addcomment/{projectid}/{userid}/{taskid}")
+    public String addComment(@PathVariable Long projectid, @PathVariable Long userid, @PathVariable Long taskid, String commentcontent) {
         Comment komentarz = new Comment(taskid, userid, commentcontent, LocalDate.now());
         commentService.SetComment(komentarz);
-        return "redirect:/homepage";
+        return "redirect:/homepage/projectinfo/{projectid}";
     }
 }

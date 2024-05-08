@@ -50,9 +50,9 @@ public class AddTaskController {
         addTaskService.DeleteTask(task.getTaskid());
         return "redirect:/homepage/projectinfo/" + projectid;
     }
-    @PostMapping("/updatetask/{taskid}")
-    private String updatetask(@PathVariable Long taskid, @RequestParam("taskstatus") Long statusid) {
+    @PostMapping("/updatetask/{projectid}/{taskid}")
+    private String updatetask(@PathVariable Long projectid, @PathVariable Long taskid, @RequestParam("taskstatus") Long statusid) {
         addTaskService.UpdateTaskStatus(taskid, statusid);
-        return "redirect:/homepage";
+        return "redirect:/homepage/projectinfo/{projectid}";
     }
 }

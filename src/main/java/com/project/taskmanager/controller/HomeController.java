@@ -26,19 +26,25 @@ public class HomeController {
 
     @GetMapping("/homepage")
     public String homepage(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        List<Status> status = homeService.GetStatusesNames();                ;
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            return "loginpage";
+        }
         Long id = (Long) session.getAttribute("userid");
         model.addAttribute("user", homeService.GetUser(id));
         model.addAttribute("projects", homeService.GetProjects());
         model.addAttribute("projectsprint", homeService.GetProjectsToPrint());
-        model.addAttribute("statuses", status);
+        model.addAttribute("statuses", homeService.GetStatusesNames());
+
         return "homePage";
     }
 
     @GetMapping("/homepage/addproject")
     private String addProjectPage(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            return "loginpage";
+        }
         Long id = (Long) session.getAttribute("userid");
         model.addAttribute("user", homeService.GetUser(id));
         model.addAttribute("projects", homeService.GetProjects());
@@ -59,7 +65,10 @@ public class HomeController {
 
     @GetMapping("/homepage/projectinfo/{projectid}")
     private String infoProject(@PathVariable Long projectid, Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            return "loginpage";
+        }
         Long id = (Long) session.getAttribute("userid");
         model.addAttribute("user", homeService.GetUser(id));
         model.addAttribute("projects", homeService.GetProjects());

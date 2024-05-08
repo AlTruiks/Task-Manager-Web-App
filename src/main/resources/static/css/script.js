@@ -3,6 +3,7 @@ function openPopUp(element) {
     const taskname = element.getAttribute("data-taskname");
     const taskstatus = element.getAttribute("data-taskstatus");
     const userid = element.getAttribute("data-userid");
+    const projectid = element.getAttribute("data-projectid");
     const popupContainer = document.querySelector('.popup-container');
 
     popupContainer.classList.add('active');
@@ -11,8 +12,9 @@ function openPopUp(element) {
     const popupCommentsContent = document.querySelector('.popup-comments-section');
 
     popupStatusContent.innerHTML = "<h2>" + taskname + "</h2>" +
-        "<form action=\"/updatetask/" + taskid + "\" method=\"post\">" +
-            "<span>Status zadania: " + taskstatus + "</span><br>" +
+        "<button class=\"popup-button-close\" onclick=\"closePopUp()\">X</button>" +
+        "<form action=\"/updatetask/" + projectid + "/" + taskid + "\" method=\"post\">" +
+            "<p>Status zadania: " + taskstatus + "</p>" +
             "<select name='taskstatus'>" +
                 "<option value='1'>To Do</option>" +
                 "<option value='2'>In Progress</option>" +
@@ -20,11 +22,10 @@ function openPopUp(element) {
                 "<option value='4'>Deferred</option>" +
             "</select>" +
             "<button type='submit'>Zapisz</button>" +
-        "</form>" +
-        "<button class=\"popup-button-close\" onclick=\"closePopUp()\">Close</button>";
+        "</form>";
 
     popupCommentsContent.innerHTML = "<h3>Dodaj komentarz</h3>" +
-        "<form action=\"/addcomment/" + userid + "/" + taskid + "\" method='post'>" +
+        "<form action=\"/addcomment/" + projectid + "/" + userid + "/" + taskid + "\" method='post'>" +
         "<input type='text' name='commentcontent' placeholder='Wpisz komentarz'>" +
         "<button type='submit'>Dodaj komentarz</button> " +
         "</form>";
@@ -34,9 +35,9 @@ function openPopUp(element) {
         .then(comments => {
             popupCommentsContent.innerHTML += "<h3>Komentarze</h3>";
             comments.forEach(comment => {
-                popupCommentsContent.innerHTML += "<div>" +
+                popupCommentsContent.innerHTML += "<div class='comment'>" +
                     "<span>" + comment[1] + "</span><br>" + // zawartość komentarza
-                    "<span>" + comment[3] + "</span><br>" + // data dodania komentarza
+                    "<span>" + comment[3] + "</span>" + // data dodania komentarza
                     "<span>" + comment[2] + "</span>" + // autor komentarza
                     "</div>";
             });
