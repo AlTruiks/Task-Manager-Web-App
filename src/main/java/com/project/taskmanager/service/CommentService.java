@@ -17,4 +17,5 @@ public class CommentService {
 
     public List<Object[]> GetCommentsByTaskId(Long taskid) { return commentRepository.GetCommentsByTaskId(taskid); }
     public void SetComment(Comment comment) { commentRepository.save(comment); }
+    public void DeleteComment(Long commentid) { commentRepository.deleteById(commentid); }
 }

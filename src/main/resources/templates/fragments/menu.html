@@ -1,8 +1,8 @@
 <div class="menu-container" th:fragment="menu">
   <div class="menu">
-    <h2>Projekty</h2>
+    <h2>Current projects</h2>
     <form action="/homepage/addproject">
-      <button class="menu-button-add-project" type="submit">Stwórz projekt</button>
+      <button class="menu-button-add-project" type="submit">Create new project</button>
     </form>
     <ul>
       <li th:each="project : ${projects}">

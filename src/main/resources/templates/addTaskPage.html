@@ -12,18 +12,18 @@
   <div class="content">
     <div class="main-content">
       <div class="add-container">
-        <h2>Dodaj nowe zadanie</h2>
+        <h2>Add task</h2>
         <form th:action="@{/addtask/{projectid}(projectid=${thisproject.projectid})}" method="post">
           <div class="add-form-group">
-            <label for="taskname" class="label">Nazwa zadania:</label>
-            <input class="input" type="text" id="taskname" name="taskname" placeholder="Podaj nazwę zadania" required>
+            <label for="taskname" class="label">Task name:</label>
+            <input class="input" type="text" id="taskname" name="taskname" placeholder="Give task name" required>
           </div>
           <div class="add-form-group">
-            <label for="description" class="label">Opis zadania:</label>
-            <input class="input" type="text" id="description" name="description" placeholder="Podaj opis zadania" required>
+            <label for="description" class="label">Task description:</label>
+            <input class="input" type="text" id="description" name="description" placeholder="Give task description" required>
           </div>
           <div class="add-form-group">
-            <label for="priority" class="label">Priorytet:</label>
+            <label for="priority" class="label">Priority:</label>
             <select class="input" id="priority" name="priority">
               <option value="1">Low</option>
               <option value="2">Medium</option>
@@ -31,13 +31,13 @@
             </select>
           </div>
           <div class="add-form-group">
-            <label for="duedate" class="label">Data zakończenia:</label>
+            <label for="duedate" class="label">Due date:</label>
             <input class="input" id="duedate" type="date" name="duedate" required>
           </div>
-          <button class="add-button" type="submit">Dodaj nowy zadanie</button>
+          <button class="add-button" type="submit">Add task</button>
         </form>
         <form th:action="@{/homepage/projectinfo/{projectid}(projectid=${thisproject.projectid})}">
-          <button class="add-button-return" type="submit">Przerwij</button>
+          <button class="add-button-return" type="submit">Cancel</button>
         </form>
       </div>
     </div>

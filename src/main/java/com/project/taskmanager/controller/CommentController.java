@@ -5,6 +5,7 @@ import com.project.taskmanager.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,12 @@ public class CommentController {
     public String addComment(@PathVariable Long projectid, @PathVariable Long userid, @PathVariable Long taskid, String commentcontent) {
         Comment comment = new Comment(taskid, userid, commentcontent, LocalDate.now());
         commentService.SetComment(comment);
+        return "redirect:/homepage/projectinfo/{projectid}";
+    }
+    @PostMapping("/deletecomment/{projectid}/{commentid}")
+    public String deleteComment(@PathVariable Long projectid, @PathVariable Long commentid) {
+        System.out.println("commentid=" + commentid);
+        commentService.DeleteComment(commentid);
         return "redirect:/homepage/projectinfo/{projectid}";
     }
 }

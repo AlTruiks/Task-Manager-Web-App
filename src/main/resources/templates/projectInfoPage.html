@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Project info page</title>
+    <title>Task Manager</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
             <h1 th:text="${thisproject.projectname}" class="project-name"></h1>
             <p th:text="${thisproject.description}" class="project-description"></p>
             <form th:action="@{/homepage/addtask/{projectid}(projectid=${thisproject.projectid})}">
-                <button type="submit" class="project-button-add-task">Dodaj zadanie</button>
+                <button type="submit" class="project-button-add-task">Add task</button>
             </form>
         </div>
         <div class="task-container">
@@ -34,7 +34,7 @@
                 </div>
                 <form th:action="@{/deletetask/{projectid}(projectid=${thisproject.projectid})}" method="post">
                     <input type="hidden" name="taskid" th:value="${task[0]}">
-                    <button type="submit" class="task-button-end-task">Usuń zadanie</button>
+                    <button type="submit" class="task-button-end-task">Delete task</button>
                 </form>
             </div>
         </div>
@@ -46,27 +46,27 @@
                 <h2>taskname</h2>
                 <button class="popup-button-close" onclick="closePopUp()">Close</button>
                 <form action="updatetask">
-                    <p>Status zadania: aktualny status</p>
+                    <p>Task status: current status</p>
                     <select name='taskstatus'>
                         <option value='1'>To Do</option>
                         <option value='2'>In Progress</option>
                         <option value='3'>Completed</option>
                         <option value='4'>Deferred</option>
                     </select>
-                    <button type='submit'>Zapisz</button>
+                    <button type='submit'>Save</button>
                 </form>
             </div>
             <div class="popup-comments-section">
-                <h3>Dodaj komentarz</h3>
+                <h3>Add comment</h3>
                 <form action="addcomment" method='post'>
-                <input type='text' name='commentcontent' placeholder='Wpisz komentarz'>
-                <button type='submit'>Dodaj komentarz</button>
+                <input type='text' name='commentcontent' placeholder='Leave a comment'>
+                <button type='submit'>Add comment</button>
                 </form>
-                <h3>Komentarze</h3>
+                <h3>Comments</h3>
                 <div class='comment'>
                 <span>comment</span><br>
                 <span>date</span>
-                <span>user</span>
+                <span>author</span>
                 </div>
             </div>
         </div>

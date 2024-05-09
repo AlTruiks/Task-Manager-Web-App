@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add project</title>
+    <title>Task Manager</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -12,28 +12,28 @@
     <div class="content">
         <div class="main-content">
             <div class="add-container">
-                <h2>Dodaj nowy projekt</h2>
+                <h2>Create new project</h2>
                 <form th:action="@{/addproject}" method="post">
                     <div class="add-form-group">
-                        <label for="projectname" class="label">Nazwa projektu:</label>
-                        <input class="input" type="text" id="projectname" name="projectname" placeholder="Podaj nazwę projektu" required>
+                        <label for="projectname" class="label">Project name:</label>
+                        <input class="input" type="text" id="projectname" name="projectname" placeholder="Give the project name" required>
                     </div>
                     <div class="add-form-group">
-                        <label for="description" class="label">Opis projektu:</label>
-                        <input class="input" type="text" id="description" name="description" placeholder="Podaj opis projektu" required>
+                        <label for="description" class="label">Project description:</label>
+                        <input class="input" type="text" id="description" name="description" placeholder="Give the project description" required>
                     </div>
                     <div class="add-form-group">
-                        <label for="startdate" class="label">Data rozpoczęcia:</label>
+                        <label for="startdate" class="label">Start date:</label>
                         <input class="input" type="date" id="startdate" name="startdate" required>
                     </div>
                     <div class="add-form-group">
-                        <label for="enddate" class="label">Data zakończenia:</label>
+                        <label for="enddate" class="label">End date:</label>
                         <input class="input" type="date" id="enddate" name="enddate" required>
                     </div>
-                    <button class="add-button" type="submit">Dodaj nowy projekt</button>
+                    <button class="add-button" type="submit">Create new project</button>
                 </form>
                 <form action="/homepage">
-                        <button class="add-button-return" type="submit">Przerwij</button>
+                        <button class="add-button-return" type="submit">Cancel</button>
                 </form>
             </div>
         </div>

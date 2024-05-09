@@ -30,7 +30,7 @@ public class RegisterController {
     private String register(User user, Model model) {
         boolean LoginIsTaken = registerService.CheckIfLoginIsTaken(user.getNickname());
         if (LoginIsTaken) {
-            model.addAttribute("errorMessage", "Login is already taken.");
+            model.addAttribute("errorMessage", "Nickname is already taken");
             return "registerpage";
         }
         else {
